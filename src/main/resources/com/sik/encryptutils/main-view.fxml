@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.sik.encryptutils.features.main.MainController">
+    <padding>
+        <Insets top="20" left="20" right="20" bottom="20"/>
+    </padding>
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="算法："/>
+        <JFXComboBox fx:id="algorithm" prefWidth="100"
+                     promptText="Select Item">
+
+        </JFXComboBox>
+        <Label text="模式："/>
+        <JFXComboBox fx:id="mode" prefWidth="80"
+                     promptText="Select Item">
+
+        </JFXComboBox>
+        <Label text="填充："/>
+        <JFXComboBox fx:id="padding" prefWidth="130"
+                     promptText="Select Item">
+
+        </JFXComboBox>
+        <JFXButton fx:id="encrypt" prefWidth="80" text="加密" buttonType="RAISED" style="-fx-background-color: #FFFFFF"/>
+        <JFXButton fx:id="decrypt" prefWidth="80" text="解密" buttonType="RAISED" style="-fx-background-color: #FFFFFF"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="密钥："/>
+        <TextField fx:id="key" minWidth="300"
+                   style="-fx-border-color: #000000;-fx-border-radius: 4;"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="偏移："/>
+        <TextField fx:id="iv" minWidth="300"
+                   style="-fx-border-color: #000000;-fx-border-radius: 4;"/>
+    </HBox>
+    <Label text="待处理内容："/>
+    <TextArea fx:id="content" maxWidth="600" minHeight="100"
+              style="-fx-border-color: #000000;-fx-border-radius: 4;"/>
+    <Label text="处理结果内容："/>
+    <TextArea fx:id="result" maxWidth="600" minHeight="100"
+              style="-fx-border-color: #000000;-fx-border-radius: 4;"/>
+</VBox>
