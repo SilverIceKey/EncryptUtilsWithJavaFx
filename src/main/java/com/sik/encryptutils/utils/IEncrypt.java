@@ -21,5 +21,5 @@ public interface IEncrypt {
      * @param text 需要解密的文本Base64
      * @return 返回解密结果
      */
-    public String decryptBase64(String mode, String padding, String key, String iv, String text);
+    public String decryptBase64(String mode, String padding, byte[] key, String iv, String text);
 }

@@ -36,6 +36,7 @@
         <Label text="密钥："/>
         <TextField fx:id="key" minWidth="300"
                    style="-fx-border-color: #000000;-fx-border-radius: 4;"/>
+        <JFXComboBox fx:id="isDecodeHEX" prefWidth="80" promptText="Select Item"/>
     </HBox>
     <HBox alignment="CENTER_LEFT" spacing="20">
         <Label text="偏移："/>

@@ -39,11 +39,11 @@ public class EncryptUtils {
      * @param text      需要解密的文本Base64
      * @return 返回解密结果
      */
-    public static String decryptBase64(String algorithm, String mode, String padding, String key, String iv, String text) {
+    public static String decryptBase64(String algorithm, String mode, String padding, byte[] key, String iv, String text) {
         try {
             return EncryptEnum.getIEncrypt(algorithm).decryptBase64(mode, padding, key, iv, text);
         } catch (Exception e) {
-            return "加密异常";
+            return "解密异常";
         }
     }
 

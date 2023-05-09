@@ -1,5 +1,6 @@
 package com.sik.encryptutils.features.main;
 
+import cn.hutool.core.util.HexUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.sik.encryptutils.utils.EncryptUtils;
@@ -16,7 +17,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -40,6 +43,11 @@ public class MainController implements Initializable {
      */
     @FXML
     private TextField key;
+    /**
+     * 是否解密HEX
+     */
+    @FXML
+    private JFXComboBox<String> isDecodeHEX;
     /**
      * 偏移
      */
@@ -77,6 +85,10 @@ public class MainController implements Initializable {
      * 填充数据
      */
     private ObservableList<String> paddingList = FXCollections.observableArrayList("ZeroPadding", "Pkcs7Padding");
+    /**
+     * 是否解密
+     */
+    private ObservableList<String> isDecodeHEXList = FXCollections.observableArrayList("是", "否");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,6 +98,8 @@ public class MainController implements Initializable {
         mode.getSelectionModel().select(0);
         padding.setItems(paddingList);
         padding.getSelectionModel().select(1);
+        isDecodeHEX.setItems(isDecodeHEXList);
+        isDecodeHEX.getSelectionModel().select(0);
         mode.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -136,9 +150,16 @@ public class MainController implements Initializable {
                     showInfoDialog("请输入内容");
                     return;
                 }
+                byte[] dealKey;
+                if ("是".equals(isDecodeHEX.getSelectionModel().getSelectedItem()) && HexUtil.isHexNumber(key.getText())) {
+                    dealKey = HexUtil.decodeHex(key.getText());
+                } else {
+                    dealKey = key.getText().getBytes(Charset.defaultCharset());
+                }
                 result.setText(EncryptUtils.decryptBase64(algorithm.getSelectionModel().getSelectedItem(),
                         mode.getSelectionModel().getSelectedItem(), padding.getSelectionModel().getSelectedItem(),
-                        key.getText(), iv.getText(), content.getText()));
+                        new SecretKeySpec(dealKey,algorithm.getSelectionModel().getSelectedItem()).getEncoded()
+                        , iv.getText(), content.getText()));
             }
         });
     }
