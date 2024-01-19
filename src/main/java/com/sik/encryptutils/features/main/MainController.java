@@ -76,7 +76,7 @@ public class MainController implements Initializable {
     /**
      * 算法数据
      */
-    private ObservableList<String> algorithmList = FXCollections.observableArrayList("AES", "DES", "DESede");
+    private ObservableList<String> algorithmList = FXCollections.observableArrayList("AES", "DES", "DESede","SM4");
     /**
      * 模式数据
      */

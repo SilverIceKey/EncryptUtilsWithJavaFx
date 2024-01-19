@@ -7,7 +7,6 @@ import com.sik.encryptutils.utils.IEncrypt;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
 public class AESSecurity implements IEncrypt {
     @Override
